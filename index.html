@@ -3,6 +3,7 @@
 <title>FollowerList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
+<script>
   Twitch.init({clientId: 'h7lvoe263k42haljbhlbv2ag1nzt5nd'}, function(error, status) {
     // we're loaded :)
   });
@@ -25,6 +26,7 @@
     $("#followlist").show();
     return false;
   }
+  </script>
 </head>
 <body>
 <h1>FollowerList</h1><br>
