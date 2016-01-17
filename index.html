@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>FollowerList</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
+<script>
+  Twitch.init({clientId: 'h7lvoe263k42haljbhlbv2ag1nzt5nd'}, function(error, status) {
+    // we're loaded :)
+  });
+  $("#tryagain").hide();
+  $("#followersheading").hide();
+  $("#followlist").hide();
+  function getChannel() {
+    var name = document.getElementById("chan-name").value;
+    var apiCall = "channels/" + name + "/following";
+    Twitch.api(apiCall, function (err, follow) {
+      for (i = 0; i < follow.length; i++) { 
+        temp = follow[i]["user"]["display_name"];
+        var elementC = document.createElement("li");
+        var text = document.createTextNode(temp);
+        elementC.appendChild(text)
+      }
+    });
+    $("#tryagain").show();
+    $("#followersheading").show();
+    $("#followlist").show();
+    return false;
+  }
+  </script>
+</head>
+<body>
+<h1>FollowerList</h1><br>
+<br>
+<h2>Enter Target Channel Name Here</h2><br>
+<form onsubmit="return getChannel()">
+<input name="chan-name" id="chan-name">
+<button type="submit" value="Submit">Submit</button>
+</form>
+<br>
+<br>
+<h2 id="followersheading">Followers of Channel</h2>
+<ul id="followlist">
+</ul>
+<a href="#" id="tryagain">Try another channel</a>
+</body>
+</html>
